@@ -1,5 +1,6 @@
 procedurally generated anime eyes shader
 
+![demo gif](pics/demo.gif)
 [![eyes demo](pics/eyes.png)](https://nitter.net/roriicon/status/1293630320990978049)
 [![eyes on model demo](pics/model.png)](https://nitter.net/roriicon/status/1294058239848583168)
 
