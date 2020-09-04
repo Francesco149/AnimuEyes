@@ -1,8 +1,10 @@
 procedurally generated anime eyes shader
 
+[video explanation](https://www.youtube.com/watch?v=AOGSxRZhU_0)
+
 ![demo gif](pics/demo.gif)
-[![eyes demo](pics/eyes.png)](https://nitter.net/roriicon/status/1293630320990978049)
-[![eyes on model demo](pics/model.png)](https://nitter.net/roriicon/status/1294058239848583168)
+[![eyes demo](pics/eyes.png)](https://nitter.net/forkexec_/status/1293630320990978049)
+[![eyes on model demo](pics/model.png)](https://nitter.net/forkexec_/status/1294058239848583168)
 
 
 # usage
