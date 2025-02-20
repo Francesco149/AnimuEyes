@@ -25,12 +25,16 @@ uniform float position = .2;
 uniform float dist = .2;
 uniform float depthOffset = .01;
 
-uniform vec4 color : source_color = vec4(1, .3, 0, 1);
+uniform vec4 irisColor : source_color = vec4(1, .3, 0, 1);
 uniform vec4 whiteColor : source_color = vec4(1, 1, 1, 1);
 uniform vec4 rimColor : source_color = vec4(1, 1, 1, 1);
 uniform vec4 eyebrowColor : source_color = vec4(0, 0, 0, 1);
 uniform vec4 border1Color : source_color = vec4(0, 0, 0, 1);
 uniform vec4 border2Color : source_color = vec4(0, 0, 0, 1);
+uniform vec4 leftIrisColor : source_color = vec4(1, 1, 1, 1);
+uniform vec4 rightIrisColor : source_color = vec4(1, 1, 1, 1);
+uniform vec4 leftEyeColor : source_color = vec4(1, 1, 1, 1);
+uniform vec4 rightEyeColor : source_color = vec4(1, 1, 1, 1);
 
 uniform float shapeSquare : hint_range(0, 1) = .554;
 uniform float irisSquare : hint_range(0, 1) = .219;
@@ -149,7 +153,7 @@ float brow(vec2 uv, float dScale) {
 				  eyebrowThickness, eyebrowSquare, eyebrowFalloff, 1);
 }
 
-vec4 eye(float flipRims, vec2 uv, vec2 look, float dScale) {
+vec4 eye(float flipRims, vec2 uv, vec2 look, float dScale, vec4 eyeIrisColor) {
 	float epsilon = dScale * .00011;
 	float shapeEdge = hardEdge(shape(uv, shapeSquare, open) / dScale);
 	float border1Edge = border(uv, dScale, border1, border1RotationDegrees, border1FalloffEllipse,
@@ -182,8 +186,8 @@ vec4 eye(float flipRims, vec2 uv, vec2 look, float dScale) {
 	float rim2Edge = hardEdge(dRim2 / dScale + epsilon);
 	vec4 col = vec4(0, 0, 0, 0);
 	col = mix(col, whiteColor, shapeEdge);
-	col = mix(col, color, irisEdge);
-	col = mix(col, color * irisAttenuation, pupilEdge);
+	col = mix(col, eyeIrisColor, irisEdge);
+	col = mix(col, eyeIrisColor * irisAttenuation, pupilEdge);
 	col = mix(col, col * irisAttenuation, irisGradient);
 	col = mix(col, col * attenuation, highlightEdge);
 	col = mix(col, rimColor, max(rim1Edge, rim2Edge));
@@ -210,9 +214,11 @@ void fragment() {
 	look.xy *= lookSens;
 	look.xy = clamp(look.xy, maxLook.xy, maxLook.zw);
 	look.x *= -1.;
-	vec4 right = eye(1, toLocal(uv, vec4(.5 - dist, position, scale.x, scale.y)), look.xy, dScale);
+	vec4 right = eye(1, toLocal(uv, vec4(.5 - dist, position, scale.x, scale.y)), look.xy, dScale,
+								irisColor * rightIrisColor) * rightEyeColor;
 	look.x *= -1.;
-	vec4 left = eye(-1, toLocal(uv, vec4(.5 + dist, position, -scale.x, scale.y)), look.xy, dScale);
+	vec4 left = eye(-1, toLocal(uv, vec4(.5 + dist, position, -scale.x, scale.y)), look.xy, dScale,
+								irisColor * leftIrisColor) * leftEyeColor;
 	float browpos = eyebrowOffset + eyebrowPosition;
 	float browR = brow(toLocal(uv, vec4(.5 - dist, browpos, scale.x, scale.y)), dScale);
 	float browL = brow(toLocal(uv, vec4(.5 + dist, browpos, -scale.x, scale.y)), dScale);
