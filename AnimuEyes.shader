@@ -25,12 +25,12 @@ uniform float position = .2;
 uniform float dist = .2;
 uniform float depthOffset = .01;
 
-uniform vec4 color : hint_color = vec4(1, .3, 0, 1);
-uniform vec4 whiteColor : hint_color = vec4(1, 1, 1, 1);
-uniform vec4 rimColor : hint_color = vec4(1, 1, 1, 1);
-uniform vec4 eyebrowColor : hint_color = vec4(0, 0, 0, 1);
-uniform vec4 border1Color : hint_color = vec4(0, 0, 0, 1);
-uniform vec4 border2Color : hint_color = vec4(0, 0, 0, 1);
+uniform vec4 color : source_color = vec4(1, .3, 0, 1);
+uniform vec4 whiteColor : source_color = vec4(1, 1, 1, 1);
+uniform vec4 rimColor : source_color = vec4(1, 1, 1, 1);
+uniform vec4 eyebrowColor : source_color = vec4(0, 0, 0, 1);
+uniform vec4 border1Color : source_color = vec4(0, 0, 0, 1);
+uniform vec4 border2Color : source_color = vec4(0, 0, 0, 1);
 
 uniform float shapeSquare : hint_range(0, 1) = .554;
 uniform float irisSquare : hint_range(0, 1) = .219;
