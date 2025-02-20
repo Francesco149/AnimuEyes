@@ -4,7 +4,7 @@
 //   _if you have other transparent materials, make sure to adjust the render priority_
 //   adjust the depthOffset if you don't want them to render through hair or if rendering through
 //   hair is wonky
-// godot version tested: 3.2.2 stable
+// godot version tested: v4.3.stable.nixpkgs [77dcf97d8]
 // license: public domain (UNLICENSE)
 
 shader_type spatial;
